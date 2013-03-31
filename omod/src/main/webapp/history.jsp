@@ -139,7 +139,7 @@
 	<a href="javascript: getOlderItemsList(${firstRecordId})"><spring:message code="sync.general.older"/> &rarr;</a>
 	</c:if>
     &#124;
-    <a href="historyRecentAllCommitted.list?recordId=${firstRecordId}&size=${size}"><spring:message code="sync.general.recentAllCommitted"/> &rarr;</a>
+    <a href="historyRecentAllCommitted.list?recordId=${firstRecordId}&size=${size}"><spring:message code="sync.general.mostRecentAllCommitted"/></a>
 	&#124;
 	<a href="historyNextError.list?recordId=${firstRecordId}&size=${size}"><spring:message code="sync.general.nextError"/> &rarr;</a>
 	</c:if>
@@ -277,7 +277,7 @@
 	<a href="javascript: getOlderItemsList(${firstRecordId})"><spring:message code="sync.general.older"/> &rarr;</a>
 	</c:if>
     &#124;
-    <a href="historyRecentAllCommitted.list?recordId=${firstRecordId}&size=${size}"><spring:message code="sync.general.recentAllCommitted"/> &rarr;</a>
+    <a href="historyRecentAllCommitted.list?recordId=${firstRecordId}&size=${size}"><spring:message code="sync.general.mostRecentAllCommitted"/></a>
 	&#124;
 	<a href="historyNextError.list?recordId=${firstRecordId}&size=${size}"><spring:message code="sync.general.nextError"/> &rarr;</a> |
 	<b><spring:message code="sync.records.action"/>:</b>
