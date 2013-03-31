@@ -713,4 +713,14 @@ public interface SyncService {
 	 */
 	@Transactional(readOnly = true)
 	public SyncServerRecord getSyncServerRecord(Integer syncServerRecordId) throws APIException;
+
+    /**
+     * Gets the Most recent successfully committed record
+     *
+     * @param states is the set of successful states
+     * @param root   check whether current server is a root server
+     * @return record id of the most successful most recent committed record
+     */
+    @Transactional(readOnly = true)
+    public int getAllCommittedSyncRecordId(EnumSet<SyncRecordState> states,boolean root);
 }

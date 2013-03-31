@@ -967,5 +967,12 @@ public class SyncServiceImpl implements SyncService {
 	public SyncServerRecord getSyncServerRecord(Integer syncServerRecordId) throws APIException {
 		return getSynchronizationDAO().getSyncServerRecord(syncServerRecordId);
 	}
-	
+
+    /**
+     * @see SyncService#getAllCommittedSyncRecordId(java.util.EnumSet, boolean)
+     */
+    public int getAllCommittedSyncRecordId(EnumSet<SyncRecordState> states, boolean root) {
+        return getSynchronizationDAO().getAllCommittedSyncRecordId(states,root);
+    }
+
 }

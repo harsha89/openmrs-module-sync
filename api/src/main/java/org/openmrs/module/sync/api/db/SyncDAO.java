@@ -444,5 +444,10 @@ public interface SyncDAO {
 	 * @throws DAOException
 	 */
 	public SyncServerRecord getSyncServerRecord(Integer syncServerRecordId) throws DAOException;
+
+    /**
+     * @see SyncService#getAllCommittedSyncRecordId(java.util.EnumSet, boolean)
+     */
+    public int getAllCommittedSyncRecordId(EnumSet<SyncRecordState> states,boolean root);
 	
 }
