@@ -61,6 +61,8 @@ public class HistoryListController {
 		public static final String HISTORY = "/module/sync/history";
 		
 		public static final String HISTORY_ERROR = "/module/sync/historyNextError";
+
+        public static final String RECENT_ALL_COMMITTED = "/module/sync/historyRecentAllCommitted";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -261,4 +263,35 @@ public class HistoryListController {
 		
 		return "redirect:" + Views.HISTORY + ".list?firstRecordId=" + recordId + "&size=" + size;
 	}
+
+    @RequestMapping(value = Views.RECENT_ALL_COMMITTED, method = RequestMethod.GET)
+    public String historyRecentAllCommitted(@RequestParam("recordId") Integer recordId,@RequestParam("size") Integer size,
+                                   HttpSession session) throws Exception {
+        SyncService ss = Context.getService(SyncService.class);
+        SyncRecord latestSyncRecord = ss.getLatestRecord();
+        SyncRecord syncRecordInError = ss.getOlderSyncRecordInState(ss.getSyncRecord(latestSyncRecord.getRecordId()),
+                SyncConstants.SYNC_RECORD_RECENT_ALL_COMMITTED_STATES);
+        if(isLatestRecordAllCommitted(latestSyncRecord))
+        {
+            if (syncRecordInError != null) {
+                recordId = syncRecordInError.getRecordId();
+            } else {
+                session.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "sync.general.noRecentAllCommitted");
+            }
+        }
+
+        return "redirect:" + Views.HISTORY + ".list?firstRecordId=" + recordId + "&size=" + size;
+    }
+
+    private boolean isLatestRecordAllCommitted(SyncRecord syncRecord)
+    {
+        for(SyncServerRecord syncServerRecord:syncRecord.getServerRecords())
+        {
+            if(!syncRecord.getState().isFinal())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

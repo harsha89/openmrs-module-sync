@@ -51,7 +51,10 @@ public class SyncConstants {
 	
 	public static final EnumSet<SyncRecordState> SYNC_RECORD_ERROR_STATES = EnumSet.of(SyncRecordState.SEND_FAILED,
 	    SyncRecordState.FAILED, SyncRecordState.FAILED_AND_STOPPED, SyncRecordState.REJECTED);
-	
+
+    public static final EnumSet<SyncRecordState> SYNC_RECORD_RECENT_ALL_COMMITTED_STATES = EnumSet.of(SyncRecordState.COMMITTED,
+            SyncRecordState.COMMITTED_AND_CONFIRMATION_SENT, SyncRecordState.ALREADY_COMMITTED);
+
 	public static final EnumSet<SyncTransmissionState> SYNC_TRANSMISSION_OK_STATES = EnumSet.of(SyncTransmissionState.OK,
 	    SyncTransmissionState.OK_NOTHING_TO_DO, SyncTransmissionState.PENDING);
 	
