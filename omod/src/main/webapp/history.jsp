@@ -16,8 +16,8 @@
 			$j(ele).dialog({
 				autoOpen: false,
 				resizable: false,
-				width:'500px',
-				height:'auto',
+				width:'700px',
+				height:'500',
 				modal: true
 			});
 		});
@@ -146,7 +146,7 @@
 	<table id="syncChangesTable" cellpadding="7" cellspacing="0">
 		<thead>
 			<tr>
-                                <th><spring:message code="sync.record.details.record" /></th>
+				<th><spring:message code="sync.record.details.id" /></th>
 				<th><spring:message code="sync.status.itemTypeAndUuid" /></th>
 				<%--
 				<th colspan="2" style="text-align: center;"><spring:message code="sync.status.timestamp" /></th>
@@ -202,7 +202,7 @@
 														<spring:message code="sync.record.direction.incoming"/>
 													</c:otherwise>
 												</c:choose>
-												<c:if test="${!syncRecord.state.final}">
+												<c:if test="${!syncRecord.state['final']}">
 													<input type="checkbox" class="syncRecordCheckBox" id="${syncRecord.uuid}" value="${syncRecord.state}" />
 												</c:if>
 											</c:when>
@@ -222,7 +222,7 @@
 												<c:if test="${empty syncRecord.remoteRecords[server]}">
 													<span style="color: #bbb"><i><spring:message code="sync.record.server.didNotExist" /></i></span>
 												</c:if>
-												<c:if test="${not empty syncRecord.remoteRecords[server] && !syncRecord.remoteRecords[server].state.final}">
+												<c:if test="${not empty syncRecord.remoteRecords[server] && !syncRecord.remoteRecords[server].state['final']}">
 													<input type="checkbox" class="syncServerRecordCheckBox" id="${syncRecord.remoteRecords[server].serverRecordId}" value="${syncRecord.remoteRecords[server].state}" />
 													<c:if test="${syncRecord.remoteRecords[server].outgoing 
 															&& (syncRecord.remoteRecords[server].state == 'FAILED' || syncRecord.remoteRecords[server].state == 'FAILED_AND_STOPPED') 
