@@ -285,15 +285,4 @@ public class HistoryListController {
         return "redirect:" + Views.HISTORY + ".list?firstRecordId=" + recordId + "&size=" + size;
     }
 
-    private boolean isLatestRecordAllCommitted(SyncRecord syncRecord)
-    {
-        for(SyncServerRecord syncServerRecord:syncRecord.getServerRecords())
-        {
-            if(!syncRecord.getState().isFinal())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 }
